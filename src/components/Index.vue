@@ -17,6 +17,13 @@
               <div class="ar_content">{{item.content}}</div>
           </div>
         </template>
+        <el-pagination
+            :small="ifsmall"
+            background
+            layout="prev, pager, next"
+            :total="total"
+            @current-change="handleCurrentChange">
+        </el-pagination>
       </div>
     </div>
 </template>
@@ -27,19 +34,34 @@ export default {
         return {
             loading:false,
             list:[],
+            ifsmall:false,
+            total:0
         }
     },
     methods:{
         toartilce:function(id){
             this.$router.push('/article/'+id)
+        },
+        handleCurrentChange:function(index){
+            console.log(index)
+            ajax.post('/',{page:index})
+            .then(res=>{
+                this.loading=false;
+                this.list=res.data.data;
+                this.total=res.data.count
+            })
         }
     },
     mounted:function(){
+        if(document.documentElement.clientWidth<410){
+            this.ifsmall=true
+        }
         this.loading=true;
-        ajax.post('/')
+        ajax.post('/',{page:1})
             .then(res=>{
                 this.loading=false;
-                this.list=res.data
+                this.list=res.data.data;
+                this.total=res.data.count
             })
     },
     computed:{
@@ -136,7 +158,15 @@ export default {
 	white-space:nowrap;
 
 }
-
+.el-pagination{
+    position: relative;
+    top: -10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 @keyframes art{
   0%{
     transform: translate(0,50px);

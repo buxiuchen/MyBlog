@@ -99,7 +99,7 @@ export default {
 .up{
   transition: all 0.3s linear;
   position: fixed;
-  bottom: 20px;
+  bottom: 30px;
   right: 20px;
   transform: translate(90px,0);
 }
