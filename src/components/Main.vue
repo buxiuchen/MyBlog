@@ -35,8 +35,15 @@ export default {
   },
   methods:{
     up:function(){
-      document.getElementsByTagName('html')[0].scrollTop=0;
-      console.log(document.getElementsByTagName('html')[0].scrollTop)
+      let everystep=document.getElementsByTagName('html')[0].scrollTop/100;
+      let timer=window.setInterval(()=>{
+        if(document.getElementsByTagName('html')[0].scrollTop>0){
+            document.getElementsByTagName('html')[0].scrollTop=document.getElementsByTagName('html')[0].scrollTop-everystep;
+        }else{
+            document.getElementsByTagName('html')[0].scrollTop=0;
+            window.clearTimeout(timer)
+        }
+      },)
     },
     tologin(){
       this.$router.push('/login');
