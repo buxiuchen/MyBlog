@@ -11,7 +11,6 @@
 import hljs from 'highlight.js'
 import Vue from 'vue'
 import ajax from '../api/parconfig.js'
-
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{
@@ -40,11 +39,13 @@ export default {
         formattime:function(){
             let date=new Date(parseInt(this.data.createtime));
             return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-        }
+        },
+        
     }
 }
 </script>
 <style>
+@import url(https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css);
 .article{
     animation:article-animation .8s ease-in-out;
     width: 70%;
@@ -108,23 +109,6 @@ export default {
     text-indent: 0em;
     font-family: 'Consolas' !important;
     font-size:14px;
-    max-width: 100%;
-    overflow-x: auto;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    background-color: #f1f1f1;
-    border-radius: 3px;
-    padding: 3px 5px;
-    margin: 0 3px;
-}
-.article code *{
-    font-family: 'Consolas' !important;
-}
-.article pre  {
-    font-family: 'Consolas' !important;
-    font-size:14px;
-    max-width: 100%;
     overflow-x: auto;
     display: inline-block;
     *display: inline;
@@ -135,6 +119,22 @@ export default {
     margin: 0 3px;
 }
 .article pre *{
+    font-family: 'Consolas' !important;
+}
+.article pre {
+    font-family: 'Consolas' !important;
+    font-size:14px;
+    width: 100%;
+    overflow-x: auto;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 0 3px;
+}
+.article pre code{
     font-family: 'Consolas' !important;
 }
 .article p{
