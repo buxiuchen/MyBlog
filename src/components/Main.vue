@@ -43,7 +43,7 @@ export default {
             document.getElementsByTagName('html')[0].scrollTop=0;
             window.clearTimeout(timer)
         }
-      },)
+      },1)
     },
     tologin(){
       this.$router.push('/login');
@@ -65,7 +65,6 @@ export default {
 </script>
 
 <style>
-@import url(https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css);
 *{
   font-family: 'Microsoft YaHei';
   margin: 0;

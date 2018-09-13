@@ -22,7 +22,8 @@
             background
             layout="prev, pager, next"
             :total="total"
-            @current-change="handleCurrentChange">
+            @current-change="handleCurrentChange"
+            v-show="!loading">
         </el-pagination>
       </div>
     </div>
