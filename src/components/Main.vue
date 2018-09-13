@@ -43,7 +43,7 @@ export default {
             document.getElementsByTagName('html')[0].scrollTop=0;
             window.clearTimeout(timer)
         }
-      },)
+      },1)
     },
     tologin(){
       this.$router.push('/login');
