@@ -65,6 +65,7 @@ export default {
 </script>
 
 <style>
+
 *{
   font-family: 'Microsoft YaHei';
   margin: 0;

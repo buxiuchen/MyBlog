@@ -7,6 +7,7 @@ import Edit from '@/components/Edit'
 import Manage from '@/components/Manage'
 import Article from '@/components/Article'
 import Overtime from '@/components/Overtime'
+import Note from '@/components/Note'
 import ajax from '../api/parconfig'
 import store from '../store'
 
@@ -49,7 +50,15 @@ const router=new Router({
                 meta: {
                     requireAuth: true,  
                 },
-            }
+            },
+            {
+                name:'记事本',
+                path:'/note',
+                component:Note,
+                // meta: {
+                //     requireAuth: true,  
+                // },
+            },
         ]
            
         
@@ -60,9 +69,11 @@ const router=new Router({
             component:Login
         },
         {
-                path:'/index/:code',
-                component:Overtime,
-        }
+            path:'/index/:code',
+            component:Overtime,
+        },
+        
+
     ]
 })
 
