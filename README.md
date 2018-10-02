@@ -1,17 +1,4 @@
-﻿# ecut_easy
-
-使用@wenyu2333同学 写的开源爬虫爬取学校教务系统的api写的练手项目
-https://github.com/wenyu2333/atecut
-Vue.js + vue-router + vuex + Element UI组件
-目前进度：完成了登录 信息查看 和成绩查询
-正在进行： 课程表
-
-
-
-
-
-
-
+﻿# Myblog
 ## Build Setup
 
 ``` bash
