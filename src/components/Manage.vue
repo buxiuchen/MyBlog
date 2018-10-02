@@ -87,7 +87,6 @@ import ajax from '../api/parconfig.js'
         arloading:false,
         infoVisible:false,
         articleVisible:false,
-        // imageUrl: '',
         oldpwd:'',
         newpwd:'',
         newpwd_show:false,
@@ -111,7 +110,6 @@ import ajax from '../api/parconfig.js'
         }
     },
     methods: {
-
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
         },
@@ -423,6 +421,9 @@ import ajax from '../api/parconfig.js'
     .content .el-dialog{
         width: 90%;
         margin-top:5vh !important
+    }
+    .el-message-box{
+        width: 300px;
     }
 }
 </style>

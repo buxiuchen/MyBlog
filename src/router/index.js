@@ -55,9 +55,9 @@ const router=new Router({
                 name:'记事本',
                 path:'/note',
                 component:Note,
-                // meta: {
-                //     requireAuth: true,  
-                // },
+                meta: {
+                    requireAuth: true,  
+                },
             },
         ]
            
@@ -81,19 +81,22 @@ router.beforeEach((to, from, next) => {
     
     if(to.fullPath==='/'){
         next('/index')
-    }else{
-        next();
     }
 
     if (to.meta.requireAuth) {
-        
         if (sessionStorage.getItem('immblogtoken')!==null) {
             ajax.post('/checklogin',{token:sessionStorage.getItem('immblogtoken')})
             .then(res=>{
                 if(res.data.stutas===200){
-                    store.dispatch('getuserinfo',res.data.info);
-                    store.dispatch('updateau',res.data.info.authority);
-                    next();
+                    async function fn(){
+                        await store.dispatch('getuserinfo',res.data.info);
+                        await store.dispatch('updateau',res.data.info.authority);
+                        return true;
+                    }
+                    fn().then(res=>{
+                        console.log(store.state.main);
+                        next();
+                    })
                 }else if(res.data.stutas===404 && to.name!='首页' && to.name!='文章'){
                     next({path: '/index/非法登录'})
                     store.dispatch('getuserinfo',{});

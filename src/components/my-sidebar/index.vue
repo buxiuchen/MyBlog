@@ -14,7 +14,7 @@
         </div>
         <div class="mysidebar-menulist">
           <ul>
-            <template v-for="item in list">
+            <template v-for="item in au">
               <li><img :src="item.imgsrc"><a :href="item.url">{{item.name}}</a></li>
             </template>
           </ul>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       show:false,
-      list:listdata.list,
+      list:[],
       loading: false,
       now_img: require("./assets/menu.png"),
       clientwidth:document.documentElement.clientWidth,
@@ -47,13 +47,23 @@ export default {
       position:'',
       tem:'',
       weathershow:false
-    };
+    }
   },
   computed:{
     ...mapState({
       authority:state=>state.main.authority,
       myinfo:state=>state.main.userinfo
-    })
+    }),
+    au:function(){
+      if(this.authority==='admin'){
+        return listdata.list;
+      }else{
+        for(let i=0;i<3;i++){
+          this.list.push(listdata.list[i]);
+        }
+        return this.list
+      }
+    }
   },
   methods: {
     close() {
@@ -111,7 +121,6 @@ export default {
           }
         })
       }
-      
     }
   },
   watch: {
@@ -122,33 +131,8 @@ export default {
         this.close();
       }
     },
-    authority:function(){
-      if(this.authority==='admin'){
-        if(this.list.length>3){
-          this.list.pop();
-        }
-        this.list.push({
-          name:'Management',
-          imgsrc:require('./assets/manage.png'),
-          url:'http://www.immortalchen.xyz/#/manage'
-        })
-      }
-    }
-
-    
   },
   mounted: function() {
-    if(this.authority==='admin'){
-        if(this.list.length>3){
-          this.list.pop();
-        }
-        this.list.push({
-          name:'Management',
-          imgsrc:require('./assets/manage.png'),
-          url:'http://www.immortalchen.xyz/#/manage'
-        })
-      }
-    
     if(this.myinfo.nickname===undefined){
       this.myinfo.nickname='Immortal';
       this.myinfo.sign='为你分享我所知道的点滴',
@@ -194,12 +178,8 @@ export default {
       }
     });
   }
+}
 
-  
-
-
-
-};
 </script>
 <style>
 .mysidebar .sidebar_content{
@@ -207,7 +187,7 @@ export default {
   transform: translate(-250px, 0);
   transition: all 0.3s ease-in-out;
   position: fixed;
-  z-index: 100;
+  z-index: 9999;
   top: 0;
   left: 0;
   height: 100vh;
@@ -217,7 +197,7 @@ export default {
 }
 .mysidebar .sidebar_wrap{
   background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+  z-index: 9998;
   position: fixed;
   top: 0;
   left: 0;
@@ -274,6 +254,7 @@ export default {
   list-style: none;
 }
 .mysidebar-menulist ul li:hover{
+  transform: scale(1.03);
   background: linear-gradient(to right,#CCCCFF,#f2f2f2);
   cursor: pointer;
 }

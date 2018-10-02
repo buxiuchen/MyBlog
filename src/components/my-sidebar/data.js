@@ -2,7 +2,7 @@ export const list=[
     {
       name:'Home',
       imgsrc:require('./assets/home.png'),
-      url:'http://www.immortalchen.xyz/#/index'
+      url:'http://123.207.66.160/#/index'
     },
     {
       name:'Github',
@@ -13,5 +13,15 @@ export const list=[
       name:'ECUT',
       imgsrc:require('./assets/school.png'),
       url:'http://www.ecut.edu.cn/'
+    },
+    {
+      name:'Management',
+      imgsrc:require('./assets/manage.png'),
+      url:'http://123.207.66.160/#/manage'
+    },
+    {
+      name:'Note',
+      imgsrc:require('./assets/note.png'),
+      url:'http://123.207.66.160/#/note'
     }
 ]
